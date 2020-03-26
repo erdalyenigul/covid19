@@ -1,0 +1,22 @@
+{
+  "name": "covid19",
+  "version": "1.0.0",
+  "description": "Corona virus | Dünyada son durum",
+  "author": "erdal.yenigul",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "@nuxtjs/axios": "^5.3.6"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "webpack": "^4.42.1"
+  }
+}
