@@ -5,7 +5,11 @@ body{font-family: 'Nunito', sans-serif!important;}
 .containerAll{float:left; width:100%;
 	.container{max-width: 1000px; margin:0 auto; padding:0 20px;}
 	header{float:left; width:100%; background-color:#222;
-		.header{display:flex; align-items:center; justify-content:center; height:80px; font-size:22px; color:#fff; font-weight:600;}
+		.header{display:flex; align-items:center; justify-content:center; height:80px; font-size:22px; color:#fff; font-weight:600; flex-direction: column;
+			span{float:left; width:100%; text-align:center; margin-bottom:5px;
+				&:nth-last-child{margin-bottom:0;}
+			}
+		}
 	}
 	footer{float:left; width:100%; background-color:#222;
 		.footer{display:flex; align-items:center; justify-content:center; flex-direction: column; padding:60px; min-height:100px; text-align:center;
@@ -21,7 +25,9 @@ body{font-family: 'Nunito', sans-serif!important;}
 			.lt{width:50%; padding:0 10px; text-align:center;
 				span{float:left; width:100%;
 					&:nth-child(1){font-size:28px; margin-bottom:5px; font-family:'Roboto', sans-serif;}
-					&:nth-child(2){font-size:56px; font-weight:600; color:#cc0000;}
+					&:nth-child(2){
+						input{font-size: 56px; font-weight: 600; color: #cc0000; width: 100%; text-align: center; background-color: transparent; border: none; outline: 0;}
+					}
 				}
 			}
 		}
@@ -32,10 +38,11 @@ body{font-family: 'Nunito', sans-serif!important;}
 			ul{float:left; width:100%;
 				li{float:left; width:100%; border-bottom:1px solid #eee; display:flex; align-items:center; justify-content:center; 
 					div{padding:20px 20px;
-					&:nth-child(1){width:40%; }
-					&:nth-child(2){width:20%; }
+					&:nth-child(1){width:5%; }
+					&:nth-child(2){width:35%; }
 					&:nth-child(3){width:20%; }
 					&:nth-child(4){width:20%; }
+					&:nth-child(5){width:20%; }
 					}
 					&:nth-child(odd){background-color:#eee;}
 					&.tHead{background-color:#6cafc7; color:#fff;}
@@ -51,17 +58,19 @@ body{font-family: 'Nunito', sans-serif!important;}
 	.containerAll header .header{font-size: 18px;}
 }
 @media (max-width: 767px) {
-	.containerAll header .header{font-size: 14px; text-align:center; line-height: 20px;}
+	.containerAll header .header{font-size: 14px; text-align:center; line-height: 20px; height:60px;}
 	.containerAll .tableWrap .table .search{font-size:14px;}
 	.containerAll .latestWrap{margin-bottom:20px;}
 	.containerAll .latestWrap .latest{flex-direction:column; padding:20px 0;}
 	.containerAll .latestWrap .latest .lt{margin-bottom:20px; width: 100%;}
 	.containerAll .latestWrap .latest .lt:nth-last-child(1){margin-bottom:0;}
-	.containerAll .latestWrap .latest .lt span:nth-child(1){font-size:18px;}
-	.containerAll .latestWrap .latest .lt span:nth-child(2){font-size:30px;}
+	.containerAll .latestWrap .latest .lt span:nth-child(1){font-size:18px; margin-bottom:0;}
+	.containerAll .latestWrap .latest .lt span:nth-child(2) input{font-size:30px;}
 	.containerAll .tableWrap .table ul li div{padding:10px 5px; font-size:13px; line-height:18px;}
-	.containerAll .tableWrap .table ul li .tCountry{}
-	.containerAll .tableWrap .table ul li .tProvince{width:25%; font-size:11px;}
-	.containerAll .tableWrap .table ul li .tCases{width:20%;}
-	.containerAll .tableWrap .table ul li .tDeaths{width:20%;}
+	.containerAll .tableWrap .table ul li div:nth-child(1){width:10%;}
+	.containerAll .tableWrap .table ul li div:nth-child(2){width:35%;}
+	.containerAll .tableWrap .table ul li div:nth-child(3){width:18.33%;}
+	.containerAll .tableWrap .table ul li div:nth-child(4){width:18.33%;}
+	.containerAll .tableWrap .table ul li div:nth-child(5){width:18.33%;}
+	.containerAll header .header span{margin-bottom:0;}
 }

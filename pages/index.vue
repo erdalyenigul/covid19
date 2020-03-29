@@ -1,7 +1,10 @@
 <template>
   <div class="containerAll">
     <header>
-      <div class="container header"><h1>COVID-19 CORONAVIRUS PANDEMIC | LATEST NEWS FROM THE WORLD</h1></div>
+      <div class="container header">
+        <span>COVID-19 CORONAVIRUS PANDEMIC</span>
+        <span>LATEST NEWS FROM THE WORLD</span>
+      </div>
     </header>
     <div class="latestCheck" v-if="latest == null || countries == null">
       Houston we have a problem about some components. Try again few minutes later.
@@ -10,11 +13,11 @@
       <div class="container latest">
         <div class="lt">
           <span><h2>CORONAVIRUS CASES</h2></span>
-          <span>{{ latest.confirmed }}</span>
+          <span><money v-model="latest.confirmed" v-bind="money" readonly></money></span>
         </div>
         <div class="lt">
           <span>DEATHS</span>
-          <span>{{ latest.deaths }}</span>
+          <span><money v-model="latest.deaths" v-bind="money" readonly></money></span>
         </div>
       </div>
     </div>
@@ -23,12 +26,14 @@
         <input type="text" placeholder="Search Country" v-model="search" class="search" />
         <ul>
           <li class="tHead">
+            <div>ID</div>
             <div>Country</div>
             <div>Total Cases</div>
             <div>Total Deaths</div>
             <div>Total Recovered</div>
           </li>
-          <li v-for="country in filteredTable" :key="country.country">
+          <li v-for="(country, index) in filteredTable" :key="country.country">
+            <div>{{ index+1 }}</div>
             <div>{{ country.country }}</div>
             <div>{{ country.totalCases }}</div>
             <div>{{ country.totalDeaths }}</div>
@@ -52,6 +57,14 @@ export default {
       latest: '',
       countries: '',
       search: '',
+      money: {
+        decimal: ',',
+        thousands: ',',
+        prefix: '',
+        suffix: ' ',
+        precision: 0,
+        masked: false
+      }
     }
   },
   async asyncData({ $axios }) {
