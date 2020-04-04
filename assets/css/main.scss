@@ -22,11 +22,18 @@ body{font-family: 'Nunito', sans-serif!important;}
 	.serverError{float:left; width:100%; padding:20px; font-size:18px; text-align:center;}
 	.latestWrap{float:left; width:100%; background-color:#eee; margin-bottom: 40px;
 		.latest{display:flex; align-items:center; justify-content: space-between; padding:40px 0; width:100%;
-			.lt{width:50%; padding:0 10px; text-align:center;
-				span{float:left; width:100%;
-					&:nth-child(1){font-size:28px; margin-bottom:5px; font-family:'Roboto', sans-serif;}
-					&:nth-child(2){
-						input{font-size: 56px; font-weight: 600; color: #cc0000; width: 100%; text-align: center; background-color: transparent; border: none; outline: 0;}
+			.lt{width:33.3%; padding:0 10px; text-align:center;
+				.ltLine{float:left; width:100%;
+					span{float:left; width:100%;
+						&:nth-child(1){font-size:28px;  margin-bottom:5px; font-family:'Roboto', sans-serif;}
+						&:nth-child(2){margin-top: -10px;
+							input{font-size: 56px; line-height:56px; font-weight: 600; color: #cc0000; width: 100%; text-align: center; background-color: transparent; border: none; outline: 0;}
+						}
+					}
+					&:nth-child(2){margin-top:20px;
+						span{font-size:26px;
+							input{font-size:26px;}
+						}
 					}
 				}
 			}
@@ -46,6 +53,7 @@ body{font-family: 'Nunito', sans-serif!important;}
 					}
 					&:nth-child(odd){background-color:#eee;}
 					&.tHead{background-color:#6cafc7; color:#fff;}
+					&:nth-child(2){display:none;}
 				}
 			}
 		}
@@ -61,11 +69,14 @@ body{font-family: 'Nunito', sans-serif!important;}
 	.containerAll header .header{font-size: 14px; text-align:center; line-height: 20px; height:60px;}
 	.containerAll .tableWrap .table .search{font-size:14px;}
 	.containerAll .latestWrap{margin-bottom:20px;}
-	.containerAll .latestWrap .latest{flex-direction:column; padding:20px 0;}
-	.containerAll .latestWrap .latest .lt{margin-bottom:20px; width: 100%;}
+	.containerAll .latestWrap .latest{flex-direction:column; padding:0;}
+	.containerAll .latestWrap .latest .lt{width: 100%; padding:0;}
+	.containerAll .latestWrap .latest .lt .ltLine{width:50%; border: 1px solid #dcdcdc; padding: 10px;}
+	.containerAll .latestWrap .latest .lt .ltLine:nth-child(2){margin-top:0;}
+	.containerAll .latestWrap .latest .lt .ltLine span:nth-child(2){height:33px;}
 	.containerAll .latestWrap .latest .lt:nth-last-child(1){margin-bottom:0;}
-	.containerAll .latestWrap .latest .lt span:nth-child(1){font-size:18px; margin-bottom:0;}
-	.containerAll .latestWrap .latest .lt span:nth-child(2) input{font-size:30px;}
+	.containerAll .latestWrap .latest .lt span:nth-child(1){font-size:14px!important; margin-bottom:0;}
+	.containerAll .latestWrap .latest .lt span:nth-child(2) input{font-size:24px!important; line-height: 36px!important;}
 	.containerAll .tableWrap .table ul li div{padding:10px 5px; font-size:13px; line-height:18px;}
 	.containerAll .tableWrap .table ul li div:nth-child(1){width:10%;}
 	.containerAll .tableWrap .table ul li div:nth-child(2){width:35%;}

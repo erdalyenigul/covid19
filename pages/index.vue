@@ -12,12 +12,58 @@
     <div class="latestWrap" v-if="latest != null">
       <div class="container latest">
         <div class="lt">
-          <span><h2>CORONAVIRUS CASES</h2></span>
-          <span><money v-model="latest.confirmed" v-bind="money" readonly></money></span>
+          <div class="ltLine">
+            <span>
+              TOTAL CASES
+            </span>
+            <span>
+              <money v-model="totalCases" v-bind="money" readonly></money>
+            </span>
+          </div>
+          <div class="ltLine">
+            <span>
+              NEW CASES
+            </span>
+            <span>
+              <money v-model="newCases" v-bind="money" readonly></money>
+            </span>
+          </div>
         </div>
         <div class="lt">
-          <span>DEATHS</span>
-          <span><money v-model="latest.deaths" v-bind="money" readonly></money></span>
+          <div class="ltLine">
+            <span>
+              TOTAL DEATHS
+            </span>
+            <span>
+              <money v-model="totalDeaths" v-bind="money" readonly></money>
+            </span>
+          </div>
+          <div class="ltLine">
+            <span>
+              <h2>NEW DEATHS</h2>
+            </span>
+            <span>
+              <money v-model="newDeaths" v-bind="money" readonly></money>
+            </span>
+          </div>
+        </div>
+        <div class="lt">
+          <div class="ltLine">
+            <span>
+              TOTAL RECOVERED
+            </span>
+            <span>
+              <money v-model="totalRecovered" v-bind="money" readonly></money>
+            </span>
+          </div>
+          <div class="ltLine">
+            <span>
+              <h2>ACTIVE CASES</h2>
+            </span>
+            <span>
+              <money v-model="activeCases" v-bind="money" readonly></money>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -33,7 +79,7 @@
             <div>Total Recovered</div>
           </li>
           <li v-for="(country, index) in filteredTable" :key="country.country">
-            <div>{{ index+1 }}</div>
+            <div>{{ index }}</div>
             <div>{{ country.country }}</div>
             <div>{{ country.totalCases }}</div>
             <div>{{ country.totalDeaths }}</div>
@@ -50,12 +96,17 @@
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
       latest: '',
-      countries: '',
+      countries: [],
+      totalCases: '',
+      newCases: '',
+      totalDeaths: '',
+      newDeaths: '',
+      totalRecovered: '',
+      activeCases: '',
       search: '',
       money: {
         decimal: ',',
@@ -64,28 +115,24 @@ export default {
         suffix: ' ',
         precision: 0,
         masked: false
-      }
+      },
     }
   },
-  async asyncData({ $axios }) {
-    let [countries, latest] = await Promise.all([ 
-      $axios({
+  asyncData({ $axios, error }) {
+    return $axios({
         method: 'get',
         url: 'https://api.collectapi.com/corona/countriesData',
         headers: {
           "content-type": "application/json",
           "authorization": "apikey 62Nz3HHBffJoueZMgYGrzg:6kwzSDcb836gKL7PE8VK6w"
         }
-      }),
-      $axios({
-        method: 'get',
-        url: 'https://coronavirus-tracker-api.herokuapp.com/v2/locations'
-      }),
-    ])
-    return {
-      countries: countries.data.result,
-      latest: latest.data.latest
-    }
+      })
+      .then((response) => {
+        return { countries: response.data.result }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   },
   computed: {
     filteredTable() {
@@ -93,8 +140,20 @@ export default {
         return country.country.toLowerCase().match(this.search.toLowerCase());
       });
     }
+  },
+  mounted() {
+    console.log(this.countries);
+    this.totalCases = this.countries[0].totalCases;
+    this.newCases = this.countries[0].newCases;
+
+    this.totalDeaths = this.countries[0].totalDeaths;
+    this.newDeaths = this.countries[0].newDeaths;
+
+    this.totalRecovered = this.countries[0].totalRecovered;
+    this.activeCases = this.countries[0].activeCases;
   }
 }
+
 </script>
 <style>
 </style>
