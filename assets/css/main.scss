@@ -21,7 +21,8 @@ body{font-family: 'Nunito', sans-serif!important;}
 	}
 	.serverError{float:left; width:100%; padding:20px; font-size:18px; text-align:center;}
 	.latestWrap{float:left; width:100%; background-color:#eee; margin-bottom: 40px;
-		.latest{display:flex; align-items:center; justify-content: space-between; padding:40px 0; width:100%;
+		.dateTime{width:100%; display:flex; align-items:center; justify-content:center; font-size:18px; padding:15px;} 
+		.latest{display:flex; align-items:center; justify-content: space-between; padding:0 0 40px; width:100%;
 			.lt{width:33.3%; padding:0 10px; text-align:center;
 				.ltLine{float:left; width:100%;
 					span{float:left; width:100%;

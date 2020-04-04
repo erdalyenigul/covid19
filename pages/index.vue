@@ -10,6 +10,7 @@
       Houston we have a problem about some components. Try again few minutes later.
     </div>
     <div class="latestWrap" v-if="latest != null">
+      <div class="container dateTime">{{ date }} - {{ time }}</div>
       <div class="container latest">
         <div class="lt">
           <div class="ltLine">
@@ -108,6 +109,8 @@ export default {
       totalRecovered: '',
       activeCases: '',
       search: '',
+      date: '',
+      time: '',
       money: {
         decimal: ',',
         thousands: ',',
@@ -142,7 +145,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.countries);
     this.totalCases = this.countries[0].totalCases;
     this.newCases = this.countries[0].newCases;
 
@@ -151,6 +153,9 @@ export default {
 
     this.totalRecovered = this.countries[0].totalRecovered;
     this.activeCases = this.countries[0].activeCases;
+
+    this.date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    this.time = new Date().toString().slice(16,21);
   }
 }
 
