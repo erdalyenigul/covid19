@@ -18,7 +18,7 @@
               TOTAL CASES
             </span>
             <span>
-              <money v-model="totalCases" v-bind="money" readonly></money>
+              {{countries[7].totalCases}}
             </span>
           </div>
           <div class="ltLine">
@@ -26,7 +26,7 @@
               NEW CASES
             </span>
             <span>
-              <money v-model="newCases" v-bind="money" readonly></money>
+              {{countries[7].newCases}}
             </span>
           </div>
         </div>
@@ -36,7 +36,7 @@
               TOTAL DEATHS
             </span>
             <span>
-              <money v-model="totalDeaths" v-bind="money" readonly></money>
+              {{countries[7].totalDeaths}}
             </span>
           </div>
           <div class="ltLine">
@@ -44,7 +44,7 @@
               <h2>NEW DEATHS</h2>
             </span>
             <span>
-              <money v-model="newDeaths" v-bind="money" readonly></money>
+              {{countries[7].newDeaths}}
             </span>
           </div>
         </div>
@@ -54,7 +54,7 @@
               TOTAL RECOVERED
             </span>
             <span>
-              <money v-model="totalRecovered" v-bind="money" readonly></money>
+              {{countries[7].totalRecovered}}
             </span>
           </div>
           <div class="ltLine">
@@ -62,7 +62,7 @@
               <h2>ACTIVE CASES</h2>
             </span>
             <span>
-              <money v-model="activeCases" v-bind="money" readonly></money>
+              {{countries[7].activeCases}}
             </span>
           </div>
         </div>
@@ -79,8 +79,8 @@
             <div>Total Deaths</div>
             <div>Total Recovered</div>
           </li>
-          <li v-for="(country, index) in filteredTable" :key="country.country">
-            <div>{{ index }}</div>
+          <li v-for="(country, index) in filteredTable" :key="index">
+            <div>{{ index+1 }}</div>
             <div>{{ country.country }}</div>
             <div>{{ country.totalCases }}</div>
             <div>{{ country.totalDeaths }}</div>
@@ -110,15 +110,7 @@ export default {
       activeCases: '',
       search: '',
       date: '',
-      time: '',
-      money: {
-        decimal: ',',
-        thousands: ',',
-        prefix: '',
-        suffix: ' ',
-        precision: 0,
-        masked: false
-      },
+      time: ''
     }
   },
   asyncData({ $axios, error }) {
@@ -147,18 +139,12 @@ export default {
   mounted() {
     this.totalCases = this.countries[0].totalCases;
     this.newCases = this.countries[0].newCases;
-
     this.totalDeaths = this.countries[0].totalDeaths;
     this.newDeaths = this.countries[0].newDeaths;
-
     this.totalRecovered = this.countries[0].totalRecovered;
     this.activeCases = this.countries[0].activeCases;
-
     this.date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
     this.time = new Date().toString().slice(16,21);
   }
 }
-
 </script>
-<style>
-</style>

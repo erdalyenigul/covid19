@@ -26,14 +26,12 @@ body{font-family: 'Nunito', sans-serif!important;}
 			.lt{width:33.3%; padding:0 10px; text-align:center;
 				.ltLine{float:left; width:100%;
 					span{float:left; width:100%;
-						&:nth-child(1){font-size:28px;  margin-bottom:5px; font-family:'Roboto', sans-serif;}
-						&:nth-child(2){margin-top: -10px;
-							input{font-size: 56px; line-height:56px; font-weight: 600; color: #cc0000; width: 100%; text-align: center; background-color: transparent; border: none; outline: 0;}
-						}
+						&:nth-child(1){font-size:24px;  margin-bottom:10px; font-family:'Roboto', sans-serif;}
+						&:nth-child(2){font-size:42px; margin-top:-5px; font-weight: 600; color: #cc0000; width: 100%; text-align: center; background-color: transparent; border: none; outline: 0;}
 					}
 					&:nth-child(2){margin-top:20px;
 						span{font-size:26px;
-							input{font-size:26px;}
+							&:nth-child(2){margin-top:-5px;}
 						}
 					}
 				}
@@ -52,9 +50,8 @@ body{font-family: 'Nunito', sans-serif!important;}
 					&:nth-child(4){width:20%; }
 					&:nth-child(5){width:20%; }
 					}
-					&:nth-child(odd){background-color:#eee;}
+					&:nth-child(even){background-color:#eee;}
 					&.tHead{background-color:#6cafc7; color:#fff;}
-					&:nth-child(2){display:none;}
 				}
 			}
 		}
