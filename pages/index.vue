@@ -74,7 +74,6 @@
       <div class="container table">
         <div class="searchWrap">
           <input type="text" placeholder="Search Country" v-model="search" class="search" />
-          <a href="#" class="clearSearch" @click="clearSearch()"><font-awesome-icon prefix="fas" icon="times" /></a>
         </div>
         <ul>
           <li class="tHead">
@@ -85,7 +84,7 @@
             <div>Total Recovered</div>
           </li>
           <li v-for="(country, index) in filteredTable" :key="index">
-            <div>{{ index+1 }}</div>
+            <div>{{ index }}</div>
             <div>{{ country.country }}</div>
             <div>{{ country.totalCases }}</div>
             <div>{{ country.totalDeaths }}</div>
@@ -142,15 +141,9 @@ export default {
       });
     }
   },
-  methods: {
-    clearSearch() {
-      this.search = '';
-    }
-  },
   mounted() {
     this.countries.splice(0, 7);
     this.countries.splice(212, 8);
-    console.log(this.countries)
 
     this.totalCases = this.countries[0].totalCases;
     this.newCases = this.countries[0].newCases;
