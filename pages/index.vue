@@ -2,8 +2,10 @@
   <div class="containerAll">
     <header>
       <div class="container header">
-        <span>COVID-19 CORONAVIRUS PANDEMIC</span>
-        <span>LATEST NEWS FROM THE WORLD</span>
+        <h1>
+          <span>TRACK COVID-19 CORONAVIRUS PANDEMIC</span>
+          <span>LATEST NEWS FROM THE WORLD</span>
+        </h1>
       </div>
     </header>
     <div class="latestCheck" v-if="latest == null || countries == null">
@@ -18,7 +20,7 @@
               TOTAL CASES
             </span>
             <span>
-              {{countries[7].totalCases}}
+              {{ totalCases }}
             </span>
           </div>
           <div class="ltLine">
@@ -26,7 +28,7 @@
               NEW CASES
             </span>
             <span>
-              {{countries[7].newCases}}
+              {{ newCases }}
             </span>
           </div>
         </div>
@@ -36,7 +38,7 @@
               TOTAL DEATHS
             </span>
             <span>
-              {{countries[7].totalDeaths}}
+              {{ totalDeaths }}
             </span>
           </div>
           <div class="ltLine">
@@ -44,7 +46,7 @@
               <h2>NEW DEATHS</h2>
             </span>
             <span>
-              {{countries[7].newDeaths}}
+              {{ newDeaths }}
             </span>
           </div>
         </div>
@@ -54,7 +56,7 @@
               TOTAL RECOVERED
             </span>
             <span>
-              {{countries[7].totalRecovered}}
+              {{ totalRecovered }}
             </span>
           </div>
           <div class="ltLine">
@@ -62,7 +64,7 @@
               <h2>ACTIVE CASES</h2>
             </span>
             <span>
-              {{countries[7].activeCases}}
+              {{ activeCases }}
             </span>
           </div>
         </div>
@@ -70,7 +72,10 @@
     </div>
     <div class="tableWrap" v-if="countries != null">
       <div class="container table">
-        <input type="text" placeholder="Search Country" v-model="search" class="search" />
+        <div class="searchWrap">
+          <input type="text" placeholder="Search Country" v-model="search" class="search" />
+          <a href="#" class="clearSearch" @click="clearSearch()"><font-awesome-icon prefix="fas" icon="times" /></a>
+        </div>
         <ul>
           <li class="tHead">
             <div>ID</div>
@@ -102,6 +107,7 @@ export default {
     return {
       latest: '',
       countries: [],
+      justCountries: [],
       totalCases: '',
       newCases: '',
       totalDeaths: '',
@@ -136,15 +142,28 @@ export default {
       });
     }
   },
+  methods: {
+    clearSearch() {
+      this.search = '';
+    }
+  },
   mounted() {
+    this.countries.splice(0, 7);
+    this.countries.splice(212, 8);
+    console.log(this.countries)
+
     this.totalCases = this.countries[0].totalCases;
     this.newCases = this.countries[0].newCases;
+
     this.totalDeaths = this.countries[0].totalDeaths;
     this.newDeaths = this.countries[0].newDeaths;
+
     this.totalRecovered = this.countries[0].totalRecovered;
     this.activeCases = this.countries[0].activeCases;
-    this.date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-    this.time = new Date().toString().slice(16,21);
+
+    this.date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    this.time = new Date().toString().slice(16, 21);
   }
 }
+
 </script>

@@ -21,7 +21,7 @@ body{font-family: 'Nunito', sans-serif!important;}
 	}
 	.serverError{float:left; width:100%; padding:20px; font-size:18px; text-align:center;}
 	.latestWrap{float:left; width:100%; background-color:#eee; margin-bottom: 40px;
-		.dateTime{width:100%; display:flex; align-items:center; justify-content:center; font-size:18px; padding:15px;} 
+		.dateTime{width:100%; display:flex; align-items:center; justify-content:center; font-size:16px; padding:15px;} 
 		.latest{display:flex; align-items:center; justify-content: space-between; padding:0 0 40px; width:100%;
 			.lt{width:33.3%; padding:0 10px; text-align:center;
 				.ltLine{float:left; width:100%;
@@ -40,7 +40,12 @@ body{font-family: 'Nunito', sans-serif!important;}
 	}
 	.tableWrap{float:left; width:100%; margin-bottom:100px;
 		.table{display:flex; align-items:center; justify-content:center; width:100%; flex-direction: column;
-			.search{float:left; width:100%; padding:10px 20px; outline:0; margin-bottom:20px; font-size:22px; border:1px solid #bbb;}
+			.searchWrap{float:left; width:100%; position:relative;
+				.search{float:left; width:100%; outline:0; padding:10px 20px; margin-bottom:20px; text-align:center; font-size:22px; border:1px solid #bbb;}
+				.clearSearch{position: absolute; right: 1px; top:1px; background-color: #e6e6e6; display: flex; align-items: center; justify-content: center; font-size: 20px; padding:9px 15px;
+					svg{font-size:28px; color:#968080;}
+				}
+			}
 			ul{float:left; width:100%;
 				li{float:left; width:100%; border-bottom:1px solid #eee; display:flex; align-items:center; justify-content:center; 
 					div{padding:20px 20px;
@@ -65,15 +70,16 @@ body{font-family: 'Nunito', sans-serif!important;}
 }
 @media (max-width: 767px) {
 	.containerAll header .header{font-size: 14px; text-align:center; line-height: 20px; height:60px;}
-	.containerAll .tableWrap .table .search{font-size:14px;}
+	.containerAll .tableWrap .table .searchWrap .search{font-size:14px;}
 	.containerAll .latestWrap{margin-bottom:20px;}
 	.containerAll .latestWrap .latest{flex-direction:column; padding:0;}
 	.containerAll .latestWrap .latest .lt{width: 100%; padding:0;}
 	.containerAll .latestWrap .latest .lt .ltLine{width:50%; border: 1px solid #dcdcdc; padding: 10px;}
 	.containerAll .latestWrap .latest .lt .ltLine:nth-child(2){margin-top:0;}
-	.containerAll .latestWrap .latest .lt .ltLine span:nth-child(2){height:33px;}
+	.containerAll .latestWrap .latest .lt .ltLine span:nth-child(2){font-size:22px; margin-top:0}
 	.containerAll .latestWrap .latest .lt:nth-last-child(1){margin-bottom:0;}
-	.containerAll .latestWrap .latest .lt span:nth-child(1){font-size:14px!important; margin-bottom:0;}
+	.containerAll .latestWrap .latest .lt .ltLine:nth-child(2) span:nth-child(2){margin-top:0;}
+	.containerAll .latestWrap .latest .lt span:nth-child(1){font-size:14px!important; margin-bottom:0!important;}
 	.containerAll .latestWrap .latest .lt span:nth-child(2) input{font-size:24px!important; line-height: 36px!important;}
 	.containerAll .tableWrap .table ul li div{padding:10px 5px; font-size:13px; line-height:18px;}
 	.containerAll .tableWrap .table ul li div:nth-child(1){width:10%;}
@@ -82,4 +88,7 @@ body{font-family: 'Nunito', sans-serif!important;}
 	.containerAll .tableWrap .table ul li div:nth-child(4){width:18.33%;}
 	.containerAll .tableWrap .table ul li div:nth-child(5){width:18.33%;}
 	.containerAll header .header span{margin-bottom:0;}
+	.containerAll .tableWrap .table ul li{padding:5px;}
+	.containerAll .container{padding:0;}
+	.containerAll .tableWrap .table .searchWrap .clearSearch svg{font-size:19px;}
 }

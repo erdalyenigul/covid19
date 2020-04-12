@@ -25,14 +25,16 @@ export default {
   */
   css: [
     '@/assets/css/reset.css',
-    '@/assets/css/main.scss'
+    '@/assets/css/main.scss',
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '~/plugins/vue-money',
-    { src: '~plugins/ga.js', mode: 'client' }
+    { src: '~plugins/ga.js', mode: 'client' },
+    '~/plugins/fontawesome.js'
   ],
   /*
   ** Nuxt.js dev-modules
