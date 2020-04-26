@@ -2,70 +2,48 @@
   <div class="containerAll">
     <header>
       <div class="container header">
-        <h1>
-          <span>TRACK COVID-19 CORONAVIRUS PANDEMIC</span>
-          <span>LATEST NEWS FROM THE WORLD</span>
-        </h1>
+        <span>
+          <h1>TRACK COVID-19 CORONAVIRUS PANDEMIC</h1>
+        </span>
+        <span>
+          <h2>LATEST NEWS FROM THE WORLD</h2>
+        </span>
       </div>
     </header>
     <div class="latestCheck" v-if="latest == null || countries == null">
       Houston we have a problem about some components. Try again few minutes later.
     </div>
-    <div class="latestWrap" v-if="latest != null">
+    <div class="latestWrap" v-if="allCases != null">
       <div class="container dateTime">{{ date }} - {{ time }}</div>
       <div class="container latest">
         <div class="lt">
           <div class="ltLine">
-            <span>
-              TOTAL CASES
-            </span>
-            <span>
-              {{ totalCases }}
-            </span>
+            <span>TOTAL CASES</span>
+            <span><money v-model="totalCases" v-bind="money" readonly></money></span>
           </div>
           <div class="ltLine">
-            <span>
-              NEW CASES
-            </span>
-            <span>
-              {{ newCases }}
-            </span>
+            <span>NEW CASES</span>
+            <span><money v-model="newCases" v-bind="money" readonly></money></span>
           </div>
         </div>
         <div class="lt">
           <div class="ltLine">
-            <span>
-              TOTAL DEATHS
-            </span>
-            <span>
-              {{ totalDeaths }}
-            </span>
+            <span>TOTAL DEATHS</span>
+            <span><money v-model="totalDeaths" v-bind="money" readonly></money></span>
           </div>
           <div class="ltLine">
-            <span>
-              <h2>NEW DEATHS</h2>
-            </span>
-            <span>
-              {{ newDeaths }}
-            </span>
+            <span>NEW DEATHS</span>
+            <span><money v-model="newDeaths" v-bind="money" readonly></money></span>
           </div>
         </div>
         <div class="lt">
           <div class="ltLine">
-            <span>
-              TOTAL RECOVERED
-            </span>
-            <span>
-              {{ totalRecovered }}
-            </span>
+            <span>TOTAL RECOVERED</span>
+            <span><money v-model="totalRecovered" v-bind="money" readonly></money></span>
           </div>
           <div class="ltLine">
-            <span>
-              <h2>ACTIVE CASES</h2>
-            </span>
-            <span>
-              {{ activeCases }}
-            </span>
+            <span>ACTIVE CASES</span>
+            <span><money v-model="activeCases" v-bind="money" readonly></money></span>
           </div>
         </div>
       </div>
@@ -77,14 +55,14 @@
         </div>
         <ul>
           <li class="tHead">
-            <div>ID</div>
+            <div></div>
             <div>Country</div>
             <div>Total Cases</div>
             <div>Total Deaths</div>
             <div>Total Recovered</div>
           </li>
           <li v-for="(country, index) in filteredTable" :key="index">
-            <div>{{ index }}</div>
+            <div>{{ index+1 }}</div>
             <div>{{ country.country }}</div>
             <div>{{ country.totalCases }}</div>
             <div>{{ country.totalDeaths }}</div>
@@ -106,7 +84,7 @@ export default {
     return {
       latest: '',
       countries: [],
-      justCountries: [],
+      allCases: [],
       totalCases: '',
       newCases: '',
       totalDeaths: '',
@@ -115,7 +93,15 @@ export default {
       activeCases: '',
       search: '',
       date: '',
-      time: ''
+      time: '',
+      money: {
+        decimal: ',',
+        thousands: ',',
+        prefix: '',
+        suffix: ' ',
+        precision: 0,
+        masked: false
+      },
     }
   },
   asyncData({ $axios, error }) {
@@ -142,20 +128,34 @@ export default {
     }
   },
   mounted() {
-    this.countries.splice(0, 7);
-    this.countries.splice(212, 8);
-
-    this.totalCases = this.countries[0].totalCases;
-    this.newCases = this.countries[0].newCases;
-
-    this.totalDeaths = this.countries[0].totalDeaths;
-    this.newDeaths = this.countries[0].newDeaths;
-
-    this.totalRecovered = this.countries[0].totalRecovered;
-    this.activeCases = this.countries[0].activeCases;
-
     this.date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     this.time = new Date().toString().slice(16, 21);
+
+    this.$axios({
+      method: 'get',
+      url: 'https://corona.lmao.ninja/v2/all',
+      headers: {
+        "content-type": "application/json",
+        "authorization": "apikey 62Nz3HHBffJoueZMgYGrzg:6kwzSDcb836gKL7PE8VK6w"
+      }
+    })
+    .then((response) => {
+      console.log(response);
+      this.allCases = response.data;
+
+      this.totalCases = this.allCases.cases;
+      this.newCases = this.allCases.todayCases;
+
+      this.totalDeaths = this.allCases.deaths;
+      this.newDeaths = this.allCases.todayDeaths;
+
+      this.totalRecovered = this.allCases.recovered;
+      this.activeCases = this.allCases.active;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+
   }
 }
 
