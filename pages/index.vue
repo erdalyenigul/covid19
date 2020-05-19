@@ -1,6 +1,7 @@
 <template>
   <div>
     <appTotalCases></appTotalCases>
+    <i class="fas fa-chevron-right"></i>
     <div class="tableWrap" v-if="countries != null">
       <div class="container table">
         <div class="searchWrap">
@@ -15,12 +16,22 @@
             <span>Total Recovered</span>
           </li>
           <li v-for="(item, index) in filteredTable" :key="index">
-            <nuxt-link :to="{ name: 'countryName', params: { countryName : item.country } }">
-              <span><img :src="item.countryInfo.flag"></span>
+            <nuxt-link
+              :to="{ name: 'countryName', params: { countryName : item.country, countryDetail : item } }"
+            >
+              <span>
+                <img :src="item.countryInfo.flag" />
+              </span>
               <span>{{ item.country }}</span>
-              <span><input v-model="item.cases" v-money="money" /></span>
-              <span><input v-model="item.deaths" v-money="money" /></span>
-              <span><input v-model="item.recovered" v-money="money" /></span>
+              <span>
+                <input v-model="item.cases" v-money="money" />
+              </span>
+              <span>
+                <input v-model="item.deaths" v-money="money" />
+              </span>
+              <span>
+                <input v-model="item.recovered" v-money="money" />
+              </span>
             </nuxt-link>
           </li>
         </ul>
@@ -29,47 +40,48 @@
   </div>
 </template>
 <script>
-import Total_cases from '@/components/Total_cases';
+import Total_cases from "@/components/Total_cases";
 
 export default {
   data() {
     return {
       countries: [],
-      search: '',
+      search: "",
       money: {
-        decimal: ',',
-        thousands: ',',
-        prefix: '',
-        suffix: '',
+        decimal: ",",
+        thousands: ",",
+        prefix: "",
+        suffix: "",
         precision: 0,
         masked: true
       },
-    }
+      title: "HELLO!!!"
+    };
   },
   components: {
     appTotalCases: Total_cases
   },
   asyncData({ $axios, error }) {
     return $axios({
-        method: 'get',
-        url: 'https://corona.lmao.ninja/v2/countries?sort=cases',
-        headers: {
-          "content-type": "application/json"
-        }
+      method: "get",
+      url: "https://corona.lmao.ninja/v2/countries?sort=cases",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(response => {
+        return { countries: response.data };
       })
-      .then((response) => {
-        return { countries: response.data }
-      })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-      })
+      });
   },
   computed: {
     filteredTable() {
-      return this.countries.filter((country) => {
+      return this.countries.filter(country => {
         return country.country.toLowerCase().match(this.search.toLowerCase());
       });
     }
   }
-}
+};
 </script>

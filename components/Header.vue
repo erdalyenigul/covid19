@@ -2,12 +2,13 @@
   <header>
     <nuxt-link to="/">
       <div class="container header">
-        <span>
-          <h1>TRACK COVID-19 CORONAVIRUS PANDEMIC</h1>
+        <span class="logo">
+          <font-awesome-icon :icon="['fas', 'globe']" />
         </span>
-        <span>
-          <h2>LATEST NEWS FROM THE WORLD</h2>
-        </span>
+        <h1>
+          <span>TRACK COVID-19 CORONAVIRUS PANDEMIC</span>
+          <span>LATEST NEWS FROM THE WORLD</span>
+        </h1>
       </div>
     </nuxt-link>
   </header>

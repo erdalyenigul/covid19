@@ -6,9 +6,10 @@ body{font-family: 'Nunito', sans-serif!important;}
 	.container{max-width: 1000px; margin:0 auto; padding:0 20px;}
 	header{float:left; width:100%; background-color:#222;
 		a{float:left; width: 100%;}
-		.header{display:flex; align-items:center; justify-content:center; height:80px; font-size:22px; color:#fff; font-weight:600; flex-direction: column;
-			span{float:left; width:100%; text-align:center; margin-bottom:5px;
-				&:nth-last-child{margin-bottom:0;}
+		.header{display:flex; align-items:center; justify-content:center; height:80px; color:#fff; 
+			.logo{float:left; width:50px; text-align:center; font-size:50px;}
+			h1{float:left; width:calc(100% - 50px); font-size:18px; font-weight:600; line-height:22px; padding-left:10px;
+				span{float:left; width:100%;}
 			}
 		}
 	}
@@ -98,7 +99,12 @@ body{font-family: 'Nunito', sans-serif!important;}
 }
 @media (max-width: 767px) {
 	.containerAll .countryDetailWrap .cdContent .ccDetailBox li span:nth-child(1), .containerAll .countryDetailWrap .cdContent .ccDetailBox li span:nth-child(2){width: 50%;}
-	.containerAll header .header{font-size: 14px; text-align:center; line-height: 20px; height:60px;}
+	.containerAll header .header h1{text-align: left; padding-left:5; font-size:13px;
+		span{
+			&:nth-child(2){display:none;}
+		}
+	}
+	.containerAll header .header .logo{font-size:40px; padding-left:10px;}
 	.containerAll .tableWrap .table .searchWrap .search{font-size:14px;}
 	.containerAll .latestWrap{margin-bottom:20px;}
 	.containerAll .latestWrap .latest{flex-direction:column; padding:0;}
