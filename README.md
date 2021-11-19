@@ -3,7 +3,7 @@
 
 ## DEMO
 
-https://covid19world.appspot.com/
+https://worldcovid19.vercel.app/
 
 # NuxtJS + Google App Engine
 
